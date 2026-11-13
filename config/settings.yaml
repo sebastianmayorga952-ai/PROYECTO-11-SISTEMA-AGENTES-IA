@@ -1,0 +1,40 @@
+# ============================================================
+# OpenCode Agentic System - Configuración Principal
+# ============================================================
+
+# Proveedor de LLM
+llm:
+  provider: "ollama"
+  base_url: "http://localhost:11434"
+  model: "codellama:13b"           # Modelo principal para generación de código
+  planning_model: "llama3:8b"      # Modelo para planificación
+  review_model: "codellama:13b"    # Modelo para revisión de código
+  temperature: 0.3
+  max_tokens: 4096
+  timeout: 120
+
+# OpenCode CLI
+opencode:
+  binary: "opencode"               # Ruta al binario de opencode
+  mode: "build"                    # Modo por defecto: build | plan
+  auto_approve: false              # Auto-aprobar cambios de archivos
+  workspace: "./output"            # Directorio de trabajo
+
+# Sistema de Agentes
+agents:
+  max_concurrent: 3
+  retry_attempts: 2
+  communication_mode: "event_bus"  # event_bus | direct
+
+# Logging
+logging:
+  level: "INFO"
+  file: "logs/system.log"
+  format: "%(asctime)s | %(name)s | %(levelname)s | %(message)s"
+
+# Output
+output:
+  base_dir: "./output"
+  create_readme: true
+  create_tests: true
+  git_init: true
